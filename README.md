@@ -105,13 +105,13 @@ Lots of other languages have great package management tools. Any great software
 is built on the shoulders of giants, in Pharks case, that would be the
 following:
 
-[RubyGems][2] (ruby)
-[Bundler][3] (ruby)
-[RIP][4] (ruby)
-[PIP][5] (python)
-[VirtualEnv][6] (python)
-[NPM][7] (nodejs)
-[Homebrew][8] (ruby)
+* [RubyGems][2] (ruby)
+* [Bundler][3] (ruby)
+* [RIP][4] (ruby)
+* [PIP][5] (python)
+* [VirtualEnv][6] (python)
+* [NPM][7] (nodejs)
+* [Homebrew][8] (ruby)
 
 [1]: http://pear.php.net/manual/
 [2]: http://docs.rubygems.org/read/book/7
