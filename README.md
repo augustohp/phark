@@ -35,26 +35,27 @@ require_once BASEDIR.'vendor/pheasant/Pheasant.php';
 Declaring dependancies in a project
 ------------------------------------
 
-A project can declare the packages it depends on with a Pharkfile in the top
+A project can declare the packages it depends on with a `Pharkdeps` in the top
 level of the project:
 
 ```php
 <?php
 
-$phark
+Phark::deps()
 	->source( 'http://pharkphp.org' )
-	->dep( 'pheasant' )
-	->dep( 'yaml', '>= 1.0' )
-	->dep( 'simpletest', '~> 2.x.beta' )
+	->depends( 'pheasant' )
+	->depends( 'yaml', '>= 1.0' )
+	->depends( 'simpletest', '~> 2.x.beta' )
 	;
 ```
 Then the following should be executed at the top level of the project:
 
 ```bash
 $ phark deps
-$ phark lock
+$ phark lock-deps
 ```
-This will result in the above dependancies installed, and a Pharkfile.lock file 
+
+This will result in the above dependancies installed, and a `Pharkdeps.lock` file 
 generated with the exact versions installed. This can be committed to your SCM
 to make sure other contributors get the same dependancy versions.
 
