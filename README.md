@@ -96,8 +96,9 @@ Why not PEAR?
 
 [PEAR][1] is a complicated beast, with a lot of legacy. Aside from the rough port to
 PHP5.3 and bulky codebase, PEAR still doesn't allow for multiple versions of a package to be
-installed side-by-side, or for per-project installations. Phark can install PEAR packages, 
-so you can have the best of both worlds.
+installed side-by-side, or for per-project installations.
+
+What's worse is how hard it is to contribute a PEAR package. Phark allows anyone to submit packages for instant consumption by other developers. If you really want you can even consume PEAR packages via this mechanism.
 
 References and Reading
 ----------------------
