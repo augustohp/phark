@@ -1,0 +1,52 @@
+
+This is a rough overview of the classes that make up the guts of Phark. It's not meant to
+be exhaustive, it's just to get an idea of the architecture.
+
+Phark\Shell
+  - env($var) returns an environmental variable
+  - copy($from, $to) copies a file from a to b
+  - move($from, $to) moves a file from a to b
+  - stat() performs a stat operation on a file 
+  - glob() performs a glob on a directory
+  - rglob() performs a recursive glob on a directory  
+  - mkdir($dir) creates a directory recursively  
+
+Phark\FileList
+  - each($f) walks a file list
+
+Phark\Project // represents a local project
+  - deps() returns a Dependancies object
+
+Phark\Environment // the basic phark environment
+  - packages() returns a Packages instance
+  - project() returns a Project instance
+
+Phark\Dependancies // a list of dependancies 
+
+Phark\Packages // a directory of packages available
+  - all() returns global and local packages
+  - local() returns local packages
+  - global() returns global packages
+  - spec($package) returns a package specification
+  - package($package) returns a Package object
+
+Phark\Package // an actual package in the filesystem
+  - spec() returns the PackageSpec
+  - uninstall()   
+
+Phark\PackageSpec // the package specification 
+  - deps() // returns a Dependancies object  
+
+Phark\Commandline
+  - execute() 
+ 
+Phark\Doc // the documentation for a topic
+  - print() // outputs to the console
+
+Phark\DependancyBuilder // used in Pharkdeps files
+  - deps($d) // specifies dependancies
+
+Phark // the basic phark object
+  - deps() // returns a dependancy builder
+
+
