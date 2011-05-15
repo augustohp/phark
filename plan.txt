@@ -24,15 +24,17 @@ Phark\Environment // the basic phark environment
 Phark\Dependancies // a list of dependancies 
 
 Phark\Packages // a directory of packages available
-  - all() returns global and local packages
-  - local() returns local packages
-  - global() returns global packages
+  - all() returns installed global and local packages
+  - local() returns installed local packages
+  - global() returns installed global packages
   - spec($package) returns a package specification
   - package($package) returns a Package object
 
 Phark\Package // an actual package in the filesystem
   - spec() returns the PackageSpec
   - uninstall()   
+
+Phark\PackageSource // a collection of packages
 
 Phark\PackageSpec // the package specification 
   - deps() // returns a Dependancies object  

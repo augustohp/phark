@@ -16,7 +16,8 @@ $ curl http://pharkphp.org/install | sh
 Using Phark
 -----------
 
-Phark packages can be installed manually with the command-line tool, [phark][].
+Phark packages can be installed manually with the command-line tool, 
+[phark](https://github.com/lox/phark/wiki/Using-the-commandline-tools).
 
 ```bash
 $ cd projects/myproject
@@ -42,10 +43,10 @@ level of the project:
 <?php
 
 Phark::deps()
-	->source( 'http://pharkphp.org' )
-	->depends( 'pheasant' )
-	->depends( 'yaml', '>= 1.0' )
-	->depends( 'simpletest', '~> 2.x.beta' )
+  ->source( 'http://pharkphp.org' )
+	->package( 'pheasant', array('git'=>'https://lox@github.com/lox/pheasant.git'))
+	->package( 'yaml', '~>1.0.0' )
+	->package( 'simpletest', '2.0.0beta1', array('group'=>'dev'))
 	;
 ```
 Then the following should be executed at the top level of the project:
@@ -85,7 +86,7 @@ Check out the wiki page on the [anatomy of a phark package](https://github.com/l
 Why the name?
 --------------
 
-Phark was born out of my frustration with trying to write an distribute
+Phark was born out of my frustration with trying to write and distribute
 re-usable code in PHP. Phark packages use the PHP Archive format, 
 [Phar](http://www.php.net/manual/en/book.phar.php).
 
@@ -98,7 +99,8 @@ Why not PEAR?
 PHP5.3 and bulky codebase, PEAR still doesn't allow for multiple versions of a package to be
 installed side-by-side, or for per-project installations.
 
-What's worse is how hard it is to contribute a PEAR package. Phark allows anyone to submit packages for instant consumption by other developers. If you really want you can even consume PEAR packages via this mechanism.
+What's worse is how hard it is to contribute a PEAR package. Phark allows anyone to submit packages for 
+instant consumption by other developers. If you really want you can even consume PEAR packages via this mechanism.
 
 References and Reading
 ----------------------
