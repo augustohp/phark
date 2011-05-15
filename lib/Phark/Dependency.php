@@ -5,7 +5,7 @@ namespace Phark;
 /**
  * A dependancy on a specific package
  */
-class Dependancy
+class Dependency
 {
 	public $package;
 	private $_constraints=array();
@@ -15,10 +15,10 @@ class Dependancy
 		$this->package = $package;
 
 		foreach($constraints as $c)
-			$this->_constraints []= $this->_parseConstraint($c);
+			$this->_constraints []= $this->_parse($c);
 	}
 
-	private function _parseConstraint($constraint)
+	private function _parse($constraint)
 	{
 		if(!preg_match('/^(~>|<=?|>=?|=|)(\d+\.\d+.\w+)$/',$constraint,$m))
 			throw new Exception("Invalid constraint $constraint");
