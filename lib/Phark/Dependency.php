@@ -3,53 +3,29 @@
 namespace Phark;
 
 /**
- * A dependancy on a specific package
+ * A dependancy links a package name, a requirement and a number of sources 
  */
 class Dependency
 {
-	public $package;
-	private $_constraints=array();
+	public $package, $requirement, $sources;
 
-	public function __construct($package, $constraints=array())
+	public function __construct($package, $requirement, $sources=null)
 	{
 		$this->package = $package;
-
-		foreach($constraints as $c)
-			$this->_constraints []= $this->_parse($c);
+		$this->sources = $sources;
+		$this->requirement = Requirement::parse($requirement); 
 	}
 
-	private function _parse($constraint)
+	public function isSatisfiedBy($package, $version)
 	{
-		if(!preg_match('/^(~>|<=?|>=?|=|)(\d+\.\d+.\w+)$/',$constraint,$m))
-			throw new Exception("Invalid constraint $constraint");
-
-		$c = new \stdClass();
-		$c->version = new Version($m[2]); 
-		$c->operator = $m[1];
-
-		return $c;
-	}
-
-	public function meets($package, $version)
-	{
-		if($package != $this->package) 
+		if($package != $this->package)
 			return false;
-
-		if(is_string($version)) $version = new Version($version);
-
-		foreach($this->_constraints as $c)
-		{
-			switch($c->operator)
-			{
-				case '<=': if(!$version->lessOrEqual($c->version)) return false; break;
-				case '<': if(!$version->less($c->version)) return false; break;
-				case '>=': if(!$version->greaterOrEqual($c->version)) return false; break;
-				case '>': if(!$version->greater($c->version)) return false; break;
-				case '=': if(!$version->equal($c->version)) return false; break;
-				case '~>': if(!$version->fuzzyEqual($c->version)) return false; break;
-			}
-		}
-
-		return true;		
+		else
+			return $this->requirement->isSatisfiedBy($version);
 	}
+
+	public function __toString()
+	{
+		return sprintf('%s %s', $this->package, $this->requirement);
+	}	
 }
