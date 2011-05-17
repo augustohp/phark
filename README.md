@@ -4,7 +4,27 @@ Phark
 Phark is a package management system for PHP code. It provides dependancies, 
 versioning and installation for packages either system-wide or for an individual project. 
 
-**Note: this README is for future software, Phark hasn't been written yet!!**
+**Note: Phark is still in active development, don't install it yet!**
+
+Todo
+----
+
+* Installer
+* Command-line tool
+  * `phark init`
+  * `phark list`	
+  * `phark install`
+  * `phark update`
+  * `phark fetch`
+  * `phark deps`
+  * `phark deps-lock`	
+  * `phark publish`
+  * `phark link`
+  * `phark uninstall`	
+  * `phark env`	
+* HTTP source support
+* GIT source support
+* PEAR support in bundle
 
 Installing Phark
 ----------------
@@ -21,7 +41,7 @@ Phark packages can be installed manually with the command-line tool,
 
 ```bash
 $ cd projects/myproject
-$ phark yeah pheasant
+$ phark install pheasant
 ```
 
 You can then proceed to reference that code in your application.
@@ -43,10 +63,9 @@ level of the project:
 <?php
 
 Phark::deps()
-  ->source( 'http://pharkphp.org' )
-	->package( 'pheasant', array('git'=>'https://lox@github.com/lox/pheasant.git'))
-	->package( 'yaml', '~>1.0.0' )
-	->package( 'simpletest', '2.0.0beta1', array('group'=>'dev'))
+	->dependancy( 'pheasant', array('git'=>'https://lox@github.com/lox/pheasant.git'))
+	->dependancy( 'yaml', '~>1.0.0' )
+	->dependancy( 'simpletest', '2.0.0beta1', array('group'=>'dev'))
 	;
 ```
 Then the following should be executed at the top level of the project:
