@@ -25,7 +25,7 @@ class ResolverTest extends \Phark\Tests\TestCase
 		return $builder->build();
 	}
 
-	public function testResolvingSimpleDependancies()
+	public function testResolvingSimpleDependencies()
 	{
 		$package = $this->_spec('package','1.0.0', array(
 			'packageA'=>'1.0.0',

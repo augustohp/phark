@@ -3,7 +3,7 @@
 namespace Phark;
 
 /**
- * A dependancy links a package name, a requirement and a number of sources 
+ * A dependency links a package name, a requirement and a number of sources 
  */
 class Dependency
 {

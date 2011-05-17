@@ -6,22 +6,22 @@ Phark\Shell
   - env($var) returns an environmental variable
   - copy($from, $to) copies a file from a to b
   - move($from, $to) moves a file from a to b
-  - stat() performs a stat operation on a file 
+  - stat() performs a stat operation on a file
   - glob() performs a glob on a directory
-  - rglob() performs a recursive glob on a directory  
-  - mkdir($dir) creates a directory recursively  
+  - rglob() performs a recursive glob on a directory
+  - mkdir($dir) creates a directory recursively
 
 Phark\FileList
   - each($f) walks a file list
 
 Phark\Project // represents a local project
-  - deps() returns a Dependancies object
+  - deps() returns a Dependencies object
 
 Phark\Environment // the basic phark environment
   - packages() returns a Packages instance
   - project() returns a Project instance
 
-Phark\Dependancies // a list of dependancies 
+Phark\Dependencies // a list of dependencies
 
 Phark\Packages // a directory of packages available
   - all() returns installed global and local packages
@@ -32,23 +32,23 @@ Phark\Packages // a directory of packages available
 
 Phark\Package // an actual package in the filesystem
   - spec() returns the PackageSpec
-  - uninstall()   
+  - uninstall()
 
 Phark\PackageSource // a collection of packages
 
-Phark\PackageSpec // the package specification 
-  - deps() // returns a Dependancies object  
+Phark\PackageSpec // the package specification
+  - deps() // returns a Dependencies object
 
 Phark\Commandline
-  - execute() 
- 
+  - execute()
+
 Phark\Doc // the documentation for a topic
   - print() // outputs to the console
 
-Phark\DependancyBuilder // used in Pharkdeps files
-  - deps($d) // specifies dependancies
+Phark\DependencyBuilder // used in Pharkdeps files
+  - deps($d) // specifies dependencies
 
 Phark // the basic phark object
-  - deps() // returns a dependancy builder
+  - deps() // returns a dependency builder
 
 
