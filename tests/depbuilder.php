@@ -13,7 +13,7 @@ class TestSource implements \Phark\Source
 	}
 }
 
-class DependancyBuilderTest extends \Phark\Tests\TestCase
+class DependencyBuilderTest extends \Phark\Tests\TestCase
 {
   public function setUp()
 	{
@@ -22,15 +22,15 @@ class DependancyBuilderTest extends \Phark\Tests\TestCase
 		$this->sourceFactory->register('http', function($url, $params) use($source) {
 			return $source;
 		});
-	}	
+	}
 
 	public function testBuilding()
 	{
 		$builder = new \Phark\DependencyBuilder($this->sourceFactory);
 		$deps = $builder
 			->source('http://example.org')
-			->dependancy('mypackage')
-			->dependancy('blargh','>=1.0.0')
+			->dependency('mypackage')
+			->dependency('blargh','>=1.0.0')
 			->build()
 			;
 

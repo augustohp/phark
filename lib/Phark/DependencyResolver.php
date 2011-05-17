@@ -54,7 +54,7 @@ class DependencyResolver
 			'depends'=>array(),
 		);
 
-		// recurse into dependancies
+		// recurse into dependencies
 		foreach($spec->dependencies() as $dep)
 		{
 			$this->dependency($dep->package, $dep->requirement);	

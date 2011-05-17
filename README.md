@@ -1,7 +1,7 @@
 Phark
 =====
 
-Phark is a package management system for PHP code. It provides dependancies, 
+Phark is a package management system for PHP code. It provides dependencies, 
 versioning and installation for packages either system-wide or for an individual project. 
 
 **Note: Phark is still in active development, don't install it yet!**
@@ -53,7 +53,7 @@ You can then proceed to reference that code in your application.
 require_once BASEDIR.'vendor/pheasant/Pheasant.php';
 ```
 
-Declaring dependancies in a project
+Declaring dependencies in a project
 ------------------------------------
 
 A project can declare the packages it depends on with a `Pharkdeps` in the top
@@ -63,9 +63,9 @@ level of the project:
 <?php
 
 Phark::deps()
-	->dependancy( 'pheasant', array('git'=>'https://lox@github.com/lox/pheasant.git'))
-	->dependancy( 'yaml', '~>1.0.0' )
-	->dependancy( 'simpletest', '2.0.0beta1', array('group'=>'dev'))
+	->dependency( 'pheasant', array('git'=>'https://lox@github.com/lox/pheasant.git'))
+	->dependency( 'yaml', '~>1.0.0' )
+	->dependency( 'simpletest', '2.0.0beta1', array('group'=>'dev'))
 	;
 ```
 Then the following should be executed at the top level of the project:
@@ -75,9 +75,9 @@ $ phark deps
 $ phark lock-deps
 ```
 
-This will result in the above dependancies installed, and a `Pharkdeps.lock` file 
+This will result in the above dependencies installed, and a `Pharkdeps.lock` file 
 generated with the exact versions installed. This can be committed to your SCM
-to make sure other contributors get the same dependancy versions.
+to make sure other contributors get the same dependency versions.
 
 
 How does Phark work?
