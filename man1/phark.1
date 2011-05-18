@@ -1,0 +1,71 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "PHARK" "1" "May 2011" "" ""
+.
+.SH "NAME"
+\fBphark\fR \- a package manager for modern php
+.
+.SH "SYNOPSIS"
+Phark is a package manager for recent versions of PHP (5\.3\.1+)\. It provides dependencies, versioning and installation for packages either system\-wide or for an individual project\.
+.
+.P
+In addition to managing packages locally, Phark allows publishing of packages to \fIhttp://pharkphp\.org\fR for easy consumption by other developers\.
+.
+.P
+See \fBphark help\fR for a list of available commands\.
+.
+.SH "INTRODUCTION"
+The simplest use\-case is installing a package\. To install a package system\-wide, use \fBphark install mypackage \-g\fR\. For installing a package to the project directory you are in use \fBphark install mypackage\fR\. For more details see \fBphark help install\fR\.
+.
+.P
+To list the packages installed, use \fBphark list\fR for the present project\'s packages and the globally available ones\. See \fBphark help list\fR for how this works\.
+.
+.SH "PACKAGE CONSUMERS"
+If you\'re writing code and you want to use phark packages in your project, you are a package consumer\. To specify which dependencies your project requires, you need a Pharkdeps file\. See \fBphark help pharkdeps\fR\.
+.
+.P
+When you checkout a project with a Pharksdep file, use the \fBphark deps\fR command to ensure they are all up\-to\-date\. See \fBphark help deps\fR\.
+.
+.SH "PACKAGE DEVELOPERS"
+To publish your package, you must have a project with a Pharkfile in it describing the package\. See \fBphark help pharkfile\fR for more details about this\.
+.
+.P
+Relevant commands are available in the following help topics:
+.
+.IP "\(bu" 4
+init Answer some questions, create a basic Pharkfile\. See \fBphark help init\fR\.
+.
+.IP "\(bu" 4
+publish Publish your current package to \fIhttp://pharkphp\.org\fR\. See \fBphark help publish\fR
+.
+.IP "\(bu" 4
+yank Made a mistake? Yank the package quickly\. See \fBphark help yank\fR
+.
+.IP "" 0
+.
+.SH "CONFIGURATION"
+At present there isn\'t any configuration for Phark\. I\'m sure there will be eventually\. To see what Phark has installed and where, checkout the output of \fBphark env\fR\.
+.
+.SH "CONTRIBUTIONS AND BUGS"
+I\'d love help, whether it\'s code, documentation, crituques or criticism\.
+.
+.P
+If you find issues, report them:
+.
+.IP "\(bu" 4
+github: \fIhttp://github\.com/lox/phark/issues\fR
+.
+.IP "\(bu" 4
+email: phark\-dev@googlegroups\.com
+.
+.IP "" 0
+.
+.P
+Providing the output of \fBphark env\fR will help us debug problems\.
+.
+.SH "HISTORY"
+See \fIhttp://github\.com/lox/phark\fR\.
+.
+.SH "AUTHOR"
+Lachlan Donald :: lox :: @lox :: \fIlachlan@ljd\.cc\fR
