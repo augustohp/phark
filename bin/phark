@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+
+define('BASEDIR', __DIR__.'/../');
+define('LIBDIR', BASEDIR.'lib/');
+
+// show all errors
+error_reporting(E_ALL);
+
+// set up autoload
+function __autoload($className)
+{
+	if(!class_exists($className))
+	{
+		$path = LIBDIR . str_replace('\\','/',$className).'.php';
+
+		if(file_exists($path))
+			require $path;
+
+		if(!class_exists($className) && !interface_exists($className))
+			throw new Exception("Unable to load $className");
+	}
+}
+
+$commandline = new \Phark\Commandline();
+$commandline
+	->register("install", new \Phark\Command\Install())
+	->register("help", new \Phark\Command\Help())
+	;
+
+// show help
+if(count($argv) == 1)
+{
+	echo "\nusage: phark [--version] [--help] <command> [<args>]\n\n";
+	echo "The commands that are available are:\n";
+	
+	foreach($commandline->commands() as $k=>$c)
+		printf("   %-12s %s\n", $k, $c->summary());
+
+	echo "\nSee 'phark help <command>' for more information on specific commands.\n";
+	exit(1);
+}
