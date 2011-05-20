@@ -49,8 +49,7 @@ You can then proceed to reference that code in your application.
 ```php
 <?php
 
-// Phark provides the BASEDIR constant 
-require_once BASEDIR.'vendor/pheasant/Pheasant.php';
+require_once 'pheasant/Pheasant.php';
 ```
 
 Declaring dependencies in a project
