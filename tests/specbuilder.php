@@ -10,14 +10,13 @@ class SpecificationBuilderTest extends \Phark\Tests\TestCase
 	public function testBuilding()
 	{
 		$shell = new MockShell();	
-		$shell->setReturnValue('getcwd', '/fake/dir');
 		$shell->setReturnValue('glob', array(
 			'lib/Test/A.php',
 			'lib/Test/B.php',
 			'lib/Test/Package/C.php',
 			));
 
-		$builder = new \Phark\SpecificationBuilder($shell);
+		$builder = new \Phark\SpecificationBuilder('/blargh',$shell);
 		$spec = $builder
 			->name('pheasant')
 			->authors('Lachlan Donald <lachlan@ljd.cc>')

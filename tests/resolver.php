@@ -13,7 +13,7 @@ class ResolverTest extends \Phark\Tests\TestCase
 
 	private function _spec($name, $version, $deps=array())
 	{
-		$builder = new \Phark\SpecificationBuilder();
+		$builder = new \Phark\SpecificationBuilder('/blargh');
 		$builder
 			->name($name)
 			->version($version)

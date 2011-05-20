@@ -16,4 +16,8 @@ class Commandline
 	{
 		return $this->_commands;
 	}
+
+	public function execute($args)
+	{
+	}
 }

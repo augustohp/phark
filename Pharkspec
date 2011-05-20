@@ -1,0 +1,15 @@
+<?php
+
+$spec
+	->name('phark')
+	->authors('Lachlan Donald <lachlan@ljd.cc>')
+	->homepage('http://github.com/lox/phark')
+	->version('0.1.0')
+	->phpVersion('>=5.3.1')
+	->summary('A package manager for PHP5.3+')
+	->description('Phark manages packages, making it easy to install, upgrade and remove, either per project or globally.')
+	->devDependency('simpletest','>=2.0.1beta')
+	->files('lib/**','bin/**')
+	->includePath('lib')
+	->executables('bin/phark')
+	;

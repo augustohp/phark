@@ -4,13 +4,15 @@ namespace Phark;
 
 class SpecificationBuilder
 {
-	private $_props, $_shell;
+	private $_props, $_shell, $_basedir;
 
-	public function __construct($shell=null)
+	public function __construct($basedir, $shell=null)
 	{
+		$this->_basedir = $basedir;
 		$this->_shell = $shell ?: new \Phark\Shell();
 		$this->_props = array(
 			'files' => array(),
+			'executables' => array(),
 		);
 	}
 
@@ -62,11 +64,22 @@ class SpecificationBuilder
 		$this->_props['phpVersion'] = new \Phark\Requirement($phpVersion); 
 		return $this;
 	}
+
+	public function executables($path)
+	{ 
+		foreach(func_get_args() as $filespec)
+			$this->_props['executables'] = array_merge($this->_props['executables'],
+				$this->_shell->glob($this->_basedir, $filespec));
+
+		return $this;
+	}		
 	
 	public function files($files) 
 	{ 
 		foreach(func_get_args() as $filespec)
-			$this->_props['files'] += $this->_shell->glob($filespec);
+			$this->_props['files'] = array_merge($this->_props['files'],
+				$this->_shell->glob($this->_basedir, $filespec));
+
 		return $this;
 	}
 

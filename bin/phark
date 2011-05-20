@@ -26,6 +26,7 @@ $commandline = new \Phark\Commandline();
 $commandline
 	->register("install", new \Phark\Command\Install())
 	->register("help", new \Phark\Command\Help())
+	->register("environment", new \Phark\Command\Environment())
 	;
 
 // show help
@@ -40,3 +41,5 @@ if(count($argv) == 1)
 	echo "\nSee 'phark help <command>' for more information on specific commands.\n";
 	exit(1);
 }
+
+$commandline->execute($argv);
