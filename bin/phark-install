@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+// show all errors
+error_reporting(E_ALL);
+
+require_once __DIR__.'/../lib/Phark/ClassLoader.php';
+
+$classloader = new \Phark\ClassLoader(array(__DIR__.'/../lib'));
+$classloader->register();
+
+$installer = new \Phark\SystemInstaller();
+$installer->install();

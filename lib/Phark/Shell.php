@@ -45,5 +45,15 @@ class Shell
 	{
 		return is_file($file);
 	}
+
+	/**
+	 * Outputs a line to STDOUT
+	 * @chainable
+	 */
+	public function printf($string)
+	{
+		call_user_func_array('printf', func_get_args());
+		return $this;
+	}
 }
 
