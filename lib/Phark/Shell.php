@@ -83,6 +83,12 @@ class Shell
 		return $this;
 	}
 
+	public function chmod($file, $mode)
+	{
+		chmod($file, $mode);
+		return $this;
+	}
+
 	/**
 	 * Outputs a line to STDOUT
 	 * @chainable

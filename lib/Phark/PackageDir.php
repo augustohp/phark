@@ -38,10 +38,12 @@ class PackageDir
 
 		foreach($package->spec()->executables() as $bin)
 		{
-			$this->_shell->symlink(
-				(string) new Path($activeDir, $bin),
-				(string) new Path($this->_env->executableDir(), basename($bin))
-			);
+			$this->_shell
+				->chmod((string) new Path($activeDir, $bin), 0755)
+				->symlink(
+					(string) new Path($activeDir, $bin),
+					(string) new Path($this->_env->executableDir(), basename($bin))
+				);
 		}
 	}
 }
