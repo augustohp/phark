@@ -4,6 +4,8 @@ namespace Phark;
 
 class Specification
 {
+	const FILENAME='Pharkspec';
+
 	public
 		$name,
 		$authors=array(),

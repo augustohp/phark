@@ -23,5 +23,14 @@ class Environment
 	{
 		return array('/usr/local/phark/packages');
 	}
-	
+
+	public function shell()
+	{
+		return new Shell();
+	}
+
+	public function packages()
+	{
+		return new PackageDir(new Path($this->installDir()), $this);
+	}
 }

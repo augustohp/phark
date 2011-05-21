@@ -5,13 +5,12 @@ docs = $(shell find doc -name '*.md' \
 				|sed 's|doc/|man1/|g' )
 
 install: 
-	php install.php	
+	bin/phark-install	
 
 man1: 
 	[ -d man1 ] || mkdir -p man1
 
 doc: man1 $(docs)
-	
 
 # use `gem install ronn` for this to work.
 man1/%.1: doc/%.md

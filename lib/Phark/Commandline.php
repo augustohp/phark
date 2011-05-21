@@ -28,6 +28,6 @@ class Commandline
 				return $obj->execute(preg_grep('/^--(help|version)$/',$args,PREG_GREP_INVERT), new Shell());
 		}
 
-		throw new Exception("'%command' is not a phark command. See phark --help");
+		throw new Exception("'$command' is not a phark command. See phark --help");
 	}
 }

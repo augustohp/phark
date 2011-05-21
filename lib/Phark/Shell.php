@@ -37,6 +37,13 @@ class Shell
 		return $files;
 	}
 
+	public function mkdir($dir, $perms=0755)
+	{
+		if(!is_dir($dir))
+			mkdir($dir, $perms, true);
+		return $this;
+	}
+
 	/**
 	 * Returns true if the file is a file (false for non-existant or a directory)
 	 * @see is_file
@@ -44,6 +51,36 @@ class Shell
 	public function isfile($file)
 	{
 		return is_file($file);
+	}
+
+	/**
+	 * Returns true if the dir is a dir 
+	 * @see is_dir
+	 */
+	public function isdir($dir)
+	{
+		return is_dir($dir);
+	}
+
+	/**
+	 * Copies a file to another path
+	 */
+	public function copy($source, $dest)
+	{
+		if(!is_dir(dirname($dest))) 
+			$this->mkdir(dirname($dest));
+		
+		$source = realpath($source);
+		copy($source, $dest);
+
+		return $this;	
+	}
+
+	public function symlink($target, $link)
+	{
+		//FIXME: error handling
+		symlink($target, $link);
+		return $this;
 	}
 
 	/**

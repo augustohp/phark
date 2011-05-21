@@ -3,69 +3,45 @@
 namespace Phark;
 
 /**
- * Builds a .phar package based on a Pharkspec
+ * Builds a .phar bundle from a package directory
  */
 class Bundler
 {
-	const SPEC_FILENAME='Pharkspec';
-
-	private $_path, $_shell;
+	private $_package;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct($path, $shell=null)
+	public function __construct($package)
 	{
-		$this->_shell = $shell ?: new Shell();
-		$this->_path = $path;
+		$this->_package = $package;
 	}
 
 	/**
-	 * Returns the path to the spec file
+	 * Return the default filename for the spec
 	 * @return string
 	 */
-	public function specfile()
+	public function pharfile()
 	{
-		return rtrim($this->_path,'/').'/'.self::SPEC_FILENAME;
+		return $this->_package->spec()->hash().'.phar';
 	}
 
 	/**
-	 * Loads the {@link Specification} from the Pharkspec
-	 * @return Specification
-	 */
-	public function spec()
-	{
-		if(!$this->_shell->isfile($this->specfile()))
-			throw new Exception("failed to find Pharkspec in $path");
-
-		$spec = new SpecificationBuilder($this->_path, $this->_shell);
-		$specfile =  $this->specfile();
-
-		// call in a closure to clear scope
-		$closure = function($spec, $specfile) {
-			require $specfile;
-			return $spec->build();
-		};
-
-		return $closure($spec, $specfile);
-	}
-
-	/**
-	 * Builds a {@link Phar} archive
+	 * Builds a {@link Phar} archive in the specified directory
 	 * @return Phar
 	 */
-	public function bundle()
+	public function bundle($dirname)
 	{
 		if(ini_get('phar.readonly'))
 			throw new Exception("unable to bundle packages when phar.readonly=1 (php.ini)");
 
-		$spec	= $this->spec();
+		$filename = new Path($dirname, $this->pharfile());
 
 		//TODO: write as TAR and convert to PHAR on the serverside?
-		$p = new \Phar($this->_path.'/'.$spec->hash().'.phar', 0, $spec->hash().'.phar');
+		$p = new \Phar($filename, 0, $this->pharfile());
 
-		foreach($spec->files() as $file)
-			$p->addFile($this->_path.'/'.$file, $file);
+		foreach($this->_package->spec()->files() as $file)
+			$p->addFile(new Path($this->_package->directory(), $file), $file);
 
 		return $p;
 	}

@@ -11,9 +11,21 @@ class SpecificationBuilder
 		$this->_basedir = $basedir;
 		$this->_shell = $shell ?: new \Phark\Shell();
 		$this->_props = array(
-			'files' => array(),
+			'files' => array(Specification::FILENAME),
 			'executables' => array(),
 		);
+	}
+
+	public static function fromFile($file, $shell=null)
+	{
+		$spec = new SpecificationBuilder(dirname($file), $shell);
+		require $file;
+		return $spec;
+	}
+
+	public static function fromDir($dir, $shell=null)
+	{
+		return self::fromFile(new Path($dir, Specification::FILENAME));
 	}
 
 	public function name($name) 
