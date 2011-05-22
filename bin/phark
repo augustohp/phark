@@ -19,7 +19,7 @@ $commandline
 // show help
 if(count($argv) == 1 || in_array('--help', $argv))
 {
-	echo "\nusage: phark [--version] [--help] <command> [<args>]\n\n";
+	echo "usage: phark [--version] [--help] <command> [<args>]\n\n";
 	echo "The commands that are available are:\n";
 	
 	foreach($commandline->commands() as $k=>$c)

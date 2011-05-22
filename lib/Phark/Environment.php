@@ -19,9 +19,19 @@ class Environment
 		return '/usr/local/bin';
 	}
 
-	public function packagePaths()
+	public function packageDirs()
 	{
 		return array('/usr/local/phark/packages');
+	}
+
+	public function activePackagesDir()
+	{
+		return '/usr/local/phark/activated';
+	}
+
+	public function cacheDir()
+	{
+		return '/usr/local/phark/cache';
 	}
 
 	public function shell()

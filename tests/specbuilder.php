@@ -41,6 +41,7 @@ class SpecificationBuilderTest extends \Phark\Tests\TestCase
 		$this->assertEqual($spec->includePath(), array('lib'));
 
 		$this->assertEqual($spec->files(), array(
+			'Pharkspec',
 			'lib/Test/A.php',
 			'lib/Test/B.php',
 			'lib/Test/Package/C.php',

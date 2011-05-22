@@ -23,4 +23,8 @@ $shell
 $env->packages()->install(new \Phark\Package(__DIR__.'/../'));
 
 // set auto_prepend_file in php.ini
+$ini = \Phark\PhpIni::fromCurrent();
+$ini->replace('auto_prepend_file',
+	$env->installDir().'/activated/phark/phark.php');
+
 
