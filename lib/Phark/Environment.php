@@ -43,4 +43,9 @@ class Environment
 	{
 		return new PackageDir(new Path($this->installDir()), $this);
 	}
+
+	public function project()
+	{
+		return Project::locate($this->shell());
+	}
 }

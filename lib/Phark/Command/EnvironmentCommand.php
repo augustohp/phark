@@ -2,17 +2,16 @@
 
 namespace Phark\Command;
 
-class Environment
+class EnvironmentCommand implements \Phark\Command
 {
 	public function summary()
 	{
 		return 'Shows the paths and environment used by phark';
 	}
 
-	public function execute($args, $shell)
+	public function execute($args, $env)
 	{
-		$env = new \Phark\Environment();
-
+		$shell = $env->shell();
 		$shell
 			->printf("Phark Environment\n")
 			->printf("  - PHARK VERSION: %s\n", \Phark::VERSION)
@@ -37,7 +36,12 @@ class Environment
 			if($path != '.') 
 				$shell->printf("    - $path\n");
 
-
+		// optionally show project details
+		if($project = $env->project())
+		{
+			$shell->printf("  - PROJECT NAME: %s\n", $project->name());
+			$shell->printf("  - PROJECT PATH: %s\n", $project->directory());
+		}
 	}
 }
 

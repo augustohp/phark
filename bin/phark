@@ -11,9 +11,9 @@ $classloader->register();
 
 $commandline = new \Phark\Commandline();
 $commandline
-	->register("install", new \Phark\Command\Install())
-	->register("help", new \Phark\Command\Help())
-	->register("environment", new \Phark\Command\Environment())
+	->register("install", new \Phark\Command\InstallCommand())
+	->register("help", new \Phark\Command\HelpCommand())
+	->register("environment", new \Phark\Command\EnvironmentCommand())
 	;
 
 // show help
