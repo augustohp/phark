@@ -61,10 +61,10 @@ level of the project:
 ```php
 <?php
 
-Phark::deps()
-	->dependency( 'pheasant', array('git'=>'https://lox@github.com/lox/pheasant.git'))
+$deps
+	->dependency( 'pheasant', array('git'=>'https://lox@github.com/lox/pheasant.git') )
 	->dependency( 'yaml', '~>1.0.0' )
-	->dependency( 'simpletest', '2.0.0beta1', array('group'=>'dev'))
+	->dependency( 'simpletest', '2.0.0beta1', array('group'=>'dev') )
 	;
 ```
 Then the following should be executed at the top level of the project:

@@ -3,7 +3,6 @@
 require_once __DIR__.'/../vendor/simpletest/autorun.php';
 require_once __DIR__.'/base.php';
 
-
 class ResolverTest extends \Phark\Tests\TestCase
 {
 	public function setUp()
