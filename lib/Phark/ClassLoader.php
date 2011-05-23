@@ -31,13 +31,13 @@ class ClassLoader
 			}
 
 			if(!class_exists($className) && !interface_exists($className))
-				throw new \Exception("Unable to load $className");
+				return false; 
 		}
 	}
 
 	public function register()
 	{
-		spl_autoload_register(array($this, 'load'), true);
+		spl_autoload_register(array($this, 'load'));
 		return $this;
 	}
 }

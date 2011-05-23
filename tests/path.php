@@ -1,6 +1,5 @@
 <?php
 
-require_once __DIR__.'/../vendor/simpletest/autorun.php';
 require_once __DIR__.'/base.php';
 
 class PathTest extends \Phark\Tests\TestCase
@@ -22,6 +21,10 @@ class PathTest extends \Phark\Tests\TestCase
 		$path = new \Phark\Path("/","myfile");
 		$this->assertEqual((string)$path, "/myfile");
 	}
+
+	public function testBareRelative()
+	{
+		$path = new \Phark\Path("","myfile");
+		$this->assertEqual((string)$path, "myfile");
+	}
 }
-
-

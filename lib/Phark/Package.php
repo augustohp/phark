@@ -8,7 +8,7 @@ class Package
 
 	public function __construct($dir, $spec=null)
 	{
-		$this->_dir = $dir;
+		$this->_dir = (string)$dir;
 		$this->_spec = $spec ?: SpecificationBuilder::fromDir($this->_dir)->build();
 	}
 

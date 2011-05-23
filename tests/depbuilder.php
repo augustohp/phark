@@ -2,7 +2,6 @@
 
 namespace Phark\DependencyBuilderTest;
 
-require_once __DIR__.'/../vendor/simpletest/autorun.php';
 require_once __DIR__.'/base.php';
 
 class TestSource implements \Phark\Source

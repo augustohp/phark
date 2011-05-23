@@ -1,6 +1,5 @@
 <?php
 
-require_once __DIR__.'/../vendor/simpletest/autorun.php';
 require_once __DIR__.'/base.php';
 
 \Mock::generate('\Phark\Shell','MockShell'); 

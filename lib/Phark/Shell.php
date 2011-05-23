@@ -21,17 +21,16 @@ class Shell
 	 */
 	public function glob($basedir, $pattern)
 	{
-
-		$iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($basedir));
 		$files = array();
+		$iterator = new \RecursiveIteratorIterator(
+			new \RecursiveDirectoryIterator($basedir, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS));
 
 		foreach ($iterator as $file)
 		{
-			//FIXME: this is slow and has loads of stat() calls.
-			$path = substr($file->getRealPath(), strlen(realpath($basedir))+1);
+			$path = new Path(substr($file->getPath(), strlen($basedir)+1), $file->getFilename());
 			
 			if(FileList::match($path, $pattern)) 
-				$files []= $path;
+				$files []= (string) $path;
 		}
 
 		return $files;
@@ -40,7 +39,11 @@ class Shell
 	public function mkdir($dir, $perms=0755)
 	{
 		if(!is_dir($dir))
-			mkdir($dir, $perms, true);
+		{
+			if(!@mkdir($dir, $perms, true))
+				throw new ShellException("Unable to mkdir $dir: ".$this->_lastError());
+		}
+
 		return $this;
 	}
 
@@ -71,23 +74,36 @@ class Shell
 			$this->mkdir(dirname($dest));
 		
 		$source = realpath($source);
-		copy($source, $dest);
+
+		if(!@copy($source, $dest))
+			throw new ShellException("Unable to copy $source to $dir: ".$this->_lastError());
 
 		return $this;	
 	}
 
 	public function symlink($target, $link)
 	{
-		//FIXME: error handling
-		symlink($target, $link);
+		if(!@symlink($target, $link))
+			throw new ShellException("Unable to link $link to $target: ".$this->_lastError());
+
 		return $this;
 	}
 
 	public function chmod($file, $mode)
 	{
-		chmod($file, $mode);
+		if(!chmod($file, $mode))
+			throw new ShellException("Unable to chmod $file to $mode: ".$this->_lastError());
+
 		return $this;
 	}
+
+	public function unlink($file)
+	{
+		if(!unlink($file))
+			throw new ShellException("Unable to unlink $file: ".$this->_lastError());
+
+		return $this;
+	}	
 
 	/**
 	 * Outputs a line to STDOUT
@@ -97,6 +113,12 @@ class Shell
 	{
 		call_user_func_array('printf', func_get_args());
 		return $this;
+	}
+
+	private function _lastError()
+	{
+		$last = error_get_last();
+		return $last['message'];
 	}
 }
 

@@ -14,6 +14,7 @@ $commandline
 	->register("install", new \Phark\Command\InstallCommand())
 	->register("help", new \Phark\Command\HelpCommand())
 	->register("environment", new \Phark\Command\EnvironmentCommand())
+	->register("list", new \Phark\Command\ListCommand())
 	;
 
 // show help

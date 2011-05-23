@@ -8,12 +8,12 @@ class Path
 
 	public function __construct($components)
 	{
-		$this->_path = array_reduce(func_get_args(), function($v, $w) {
-			return $v.($w == '/' ? '/' : rtrim($w, '/')).($w == '/' ? '' : '/');
-		});
+		$this->_path = array_reduce(func_get_args(), function($result, $token) {
 
-		if(strlen($this->_path) > 1)
-			$this->_path = rtrim($this->_path, '/');
+			$delim = (empty($result) || $result == '/') ? '' : '/';
+			$token = ($token == '/') ? $token : rtrim($token,'/');
+			return $result . $delim . $token;
+		});
 	}
 
 	public function __toString()

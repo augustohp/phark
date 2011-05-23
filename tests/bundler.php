@@ -1,6 +1,5 @@
 <?php
 
-require_once __DIR__.'/../vendor/simpletest/autorun.php';
 require_once __DIR__.'/base.php';
 
 class BundlerTest extends \Phark\Tests\TestCase
@@ -13,6 +12,8 @@ class BundlerTest extends \Phark\Tests\TestCase
 		// check some files are in place
 		$this->assertTrue(is_file("/tmp/".$bundler->pharfile()));
 		$this->assertTrue(isset($phar['bin/phark']));
+		$this->assertTrue(isset($phar['phark.php']));
+		$this->assertTrue(isset($phar['Pharkspec']));
 		$this->assertFalse(isset($phar['tests/all.php']));
 
 		unlink("/tmp/".$bundler->pharfile());

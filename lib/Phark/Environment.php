@@ -46,6 +46,6 @@ class Environment
 
 	public function project()
 	{
-		return Project::locate($this->shell());
+		return Project::locate($this);
 	}
 }

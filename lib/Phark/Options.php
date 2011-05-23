@@ -22,11 +22,11 @@ class Options
 	 * colon to indicate a value is required
 	 * @return object
 	 */
-	public function parse($pattern)
+	public function parse($pattern, $params=array())
 	{
 		$args = $this->_args;
 		$valid = array_map(function($a) { return trim($a,':'); }, $pattern);
-		$result = (object) array('unmatched'=>array(), 'opts'=>array());
+		$result = (object) array('unmatched'=>array(), 'opts'=>array(), 'params'=>array());
 		$inside = false;
 
 		while($arg = array_shift($args))
@@ -48,6 +48,9 @@ class Options
 				$result->unmatched []= $arg;
 			}
 		}
+
+		foreach($params as $param)
+			$result->params[$param] = array_shift($result->unmatched);
 
 		return $result;
 	}

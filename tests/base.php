@@ -8,6 +8,9 @@ namespace
 	// show all errors
 	error_reporting(E_ALL);
 
+	// load simpletest
+	require_once 'simpletest/autorun.php';
+
 	// set up autoload
 	function __autoload($className)
 	{
